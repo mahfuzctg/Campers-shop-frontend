@@ -1,15 +1,13 @@
-import { Button } from "@/root/ui/button";
 import React, { useState } from "react";
+import { FaShoppingCart } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Function to determine if a route is active
   const isActive = (path: string) => location.pathname === path;
 
-  // Toggle the mobile menu
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -17,12 +15,9 @@ const Navbar: React.FC = () => {
   return (
     <nav className="fixed top-0 left-0 w-full bg-gray-800 text-white p-4 shadow-md z-50">
       <div className="container mx-auto flex items-center justify-between">
-        {/* Logo and Site Name */}
         <Link to="/" className="flex items-center space-x-2">
           <span className="text-xl font-bold">Campers Shop</span>
         </Link>
-
-        {/* Navbar Items (Desktop) */}
         <div className="hidden md:flex space-x-4">
           <Link
             to="/"
@@ -43,14 +38,6 @@ const Navbar: React.FC = () => {
             Products
           </Link>
           <Link
-            to="/cart"
-            className={`px-3 py-2 rounded-md text-sm font-medium ${
-              isActive("/cart") ? "bg-gray-600" : "text-white hover:bg-gray-700"
-            }`}
-          >
-            Cart
-          </Link>
-          <Link
             to="/about"
             className={`px-3 py-2 rounded-md text-sm font-medium ${
               isActive("/about")
@@ -60,17 +47,24 @@ const Navbar: React.FC = () => {
           >
             About Us
           </Link>
+          <Link
+            to="/cart"
+            className={`px-3 py-2 rounded-md text-sm font-medium ${
+              isActive("/cart") ? "bg-gray-600" : "text-white hover:bg-gray-700"
+            }`}
+          >
+            Cart <FaShoppingCart className="inline ml-1" />
+          </Link>
         </div>
-
-        {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center">
-          <Button className="bg-gray-700 text-white" onClick={toggleMenu}>
+          <button
+            className="bg-gray-700 text-white p-1 rounded-md"
+            onClick={toggleMenu}
+          >
             Menu
-          </Button>
+          </button>
         </div>
       </div>
-
-      {/* Mobile Menu (Toggle visibility based on state) */}
       <div
         className={`md:hidden ${
           isMenuOpen ? "block" : "hidden"
@@ -81,7 +75,7 @@ const Navbar: React.FC = () => {
           className={`px-3 py-2 rounded-md text-sm font-medium ${
             isActive("/") ? "bg-gray-600" : "text-white hover:bg-gray-700"
           }`}
-          onClick={() => setIsMenuOpen(false)} // Close menu on link click
+          onClick={() => setIsMenuOpen(false)}
         >
           Home
         </Link>
@@ -92,27 +86,27 @@ const Navbar: React.FC = () => {
               ? "bg-gray-600"
               : "text-white hover:bg-gray-700"
           }`}
-          onClick={() => setIsMenuOpen(false)} // Close menu on link click
+          onClick={() => setIsMenuOpen(false)}
         >
           Products
-        </Link>
-        <Link
-          to="/cart"
-          className={`px-3 py-2 rounded-md text-sm font-medium ${
-            isActive("/cart") ? "bg-gray-600" : "text-white hover:bg-gray-700"
-          }`}
-          onClick={() => setIsMenuOpen(false)} // Close menu on link click
-        >
-          Cart
         </Link>
         <Link
           to="/about"
           className={`px-3 py-2 rounded-md text-sm font-medium ${
             isActive("/about") ? "bg-gray-600" : "text-white hover:bg-gray-700"
           }`}
-          onClick={() => setIsMenuOpen(false)} // Close menu on link click
+          onClick={() => setIsMenuOpen(false)}
         >
           About Us
+        </Link>
+        <Link
+          to="/cart"
+          className={`px-3 py-2 rounded-md text-sm font-medium ${
+            isActive("/cart") ? "bg-gray-600" : "text-white hover:bg-gray-700"
+          }`}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          Cart <FaShoppingCart className="inline ml-1" />
         </Link>
       </div>
     </nav>
