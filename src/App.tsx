@@ -3,7 +3,8 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import Navbar from "./layout/nav/navbar";
+import Navbar from "./components/common/nav/navbar";
+import AboutUsSection from "./pages/About/AboutSection";
 import HomePage from "./pages/home/homePage";
 
 const App: React.FC = () => {
@@ -12,10 +13,11 @@ const App: React.FC = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutUsSection />} />
         {/* <Route path="/products" element={<ProductsPage />} />
         <Route path="/products/:id" element={<ProductDetailsPage />} />
         <Route path="/cart" element={<CartPage />} />
-        <Route path="/about" element={<AboutUsPage />} /> */}
+        */}
       </Routes>
     </>
   );
