@@ -1,5 +1,5 @@
 // src/components/SortOptions.tsx
-import { setSortBy } from "@/redux/slices/productsSlice";
+
 import { RootState } from "@/redux/store";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +9,7 @@ const SortOptions: React.FC = () => {
   const { sortBy } = useSelector((state: RootState) => state.products);
 
   const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setSortBy(event.target.value));
+    dispatch(sortBy(event.target.value));
   };
 
   return (

@@ -7,27 +7,43 @@ import CategoriesSection from "@/components/Sections/CategoriesSection";
 import { fetchCategories } from "@/redux/slices/categoriesSlice";
 import { fetchProducts } from "@/redux/slices/productsSlice";
 import { AppDispatch, RootState } from "@/redux/store";
+import { Product } from "@/types/Product";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const ProductsPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const products = useSelector(
-    (state: RootState) => state.products.filteredProducts
+
+  const products =
+    useSelector((state: RootState) => state.products.filteredProducts) || [];
+
+  const categories =
+    useSelector((state: RootState) => state.categories.items) || [];
+
+  const productStatus = useSelector(
+    (state: RootState) => state.products.status
   );
-  const categories = useSelector((state: RootState) => state.categories.items);
-  const status = useSelector((state: RootState) => state.products.status);
-  const error = useSelector((state: RootState) => state.products.error);
+  const categoryStatus = useSelector(
+    (state: RootState) => state.categories.status
+  );
+  const productError = useSelector((state: RootState) => state.products.error);
+  const categoryError = useSelector(
+    (state: RootState) => state.categories.error
+  );
 
   useEffect(() => {
-    if (status === "idle") {
+    if (productStatus === "idle") {
       dispatch(fetchProducts());
+    }
+    if (categoryStatus === "idle") {
       dispatch(fetchCategories());
     }
-  }, [dispatch, status]);
+  }, [dispatch, productStatus, categoryStatus]);
 
-  if (status === "loading") return <div>Loading...</div>;
-  if (status === "failed") return <div>Error: {error}</div>;
+  if (productStatus === "loading" || categoryStatus === "loading")
+    return <div>Loading...</div>;
+  if (productStatus === "failed") return <div>Error: {productError}</div>;
+  if (categoryStatus === "failed") return <div>Error: {categoryError}</div>;
 
   return (
     <div className="container mx-auto p-4 mt-[5%]">
@@ -52,7 +68,7 @@ const ProductsPage: React.FC = () => {
       {/* Product Listings */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {products.length > 0 ? (
-          products.map((product) => (
+          products.map((product: Product) => (
             <ProductCard key={product._id} product={product} />
           ))
         ) : (

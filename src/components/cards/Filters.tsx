@@ -1,9 +1,5 @@
 // src/components/FilterPanel.tsx
-import {
-  clearFilters,
-  setCategory,
-  setPriceRange,
-} from "@/redux/slices/productsSlice";
+
 import { RootState } from "@/redux/store";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -84,3 +80,14 @@ const FilterPanel: React.FC = () => {
 };
 
 export default FilterPanel;
+function setCategory(value: string): any {
+  throw new Error("Function not implemented.");
+}
+
+function setPriceRange(arg0: { min: any; max: any }): any {
+  throw new Error("Function not implemented.");
+}
+
+function clearFilters(): any {
+  throw new Error("Function not implemented.");
+}

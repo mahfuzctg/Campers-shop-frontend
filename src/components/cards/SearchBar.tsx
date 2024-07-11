@@ -1,5 +1,5 @@
 // src/components/SearchBar.tsx
-import { setSearchTerm } from "@/redux/slices/productsSlice";
+
 import React from "react";
 import { useDispatch } from "react-redux";
 
@@ -23,3 +23,6 @@ const SearchBar: React.FC = () => {
 };
 
 export default SearchBar;
+function setSearchTerm(value: string): any {
+  throw new Error("Function not implemented.");
+}

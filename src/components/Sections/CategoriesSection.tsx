@@ -1,10 +1,14 @@
-import { RootState } from "@/redux/store";
+import { Category } from "@/types/Category";
 import React from "react";
-import { useSelector } from "react-redux";
 
-const CategoriesSection: React.FC = () => {
-  const categories = useSelector((state: RootState) => state.categories.items);
+interface CategoriesSectionProps {
+  categories: Category[];
+}
 
+const CategoriesSection: React.FC<CategoriesSectionProps> = ({
+  categories = [],
+}) => {
+  if (!categories.length) return null; // Handle case where categories are empty
   return (
     <section className="my-8">
       <h2 className="text-2xl font-bold mb-4">Product Categories</h2>
