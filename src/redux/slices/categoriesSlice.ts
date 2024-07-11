@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 interface Category {
   id: string;
@@ -8,21 +9,42 @@ interface Category {
 
 interface CategoriesState {
   items: Category[];
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
 }
 
 const initialState: CategoriesState = {
   items: [],
+  status: "idle",
+  error: null,
 };
+
+export const fetchCategories = createAsyncThunk(
+  "categories/fetchCategories",
+  async () => {
+    const response = await axios.get("http://localhost:5000/api/categories");
+    return response.data;
+  }
+);
 
 const categoriesSlice = createSlice({
   name: "categories",
   initialState,
-  reducers: {
-    setCategories(state, action: PayloadAction<Category[]>) {
-      state.items = action.payload;
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCategories.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchCategories.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.items = action.payload;
+      })
+      .addCase(fetchCategories.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message || "Failed to fetch categories";
+      });
   },
 });
 
-export const { setCategories } = categoriesSlice.actions;
 export default categoriesSlice.reducer;

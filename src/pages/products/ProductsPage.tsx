@@ -3,6 +3,8 @@ import ProductCard from "@/components/cards/ProductCard";
 import SearchBar from "@/components/cards/SearchBar";
 import SortOptions from "@/components/cards/SortingOptions";
 import CategoriesSection from "@/components/Sections/CategoriesSection";
+
+import { fetchCategories } from "@/redux/slices/categoriesSlice";
 import { fetchProducts } from "@/redux/slices/productsSlice";
 import { AppDispatch, RootState } from "@/redux/store";
 import React, { useEffect } from "react";
@@ -13,12 +15,14 @@ const ProductsPage: React.FC = () => {
   const products = useSelector(
     (state: RootState) => state.products.filteredProducts
   );
+  const categories = useSelector((state: RootState) => state.categories.items);
   const status = useSelector((state: RootState) => state.products.status);
   const error = useSelector((state: RootState) => state.products.error);
 
   useEffect(() => {
     if (status === "idle") {
       dispatch(fetchProducts());
+      dispatch(fetchCategories());
     }
   }, [dispatch, status]);
 
@@ -40,11 +44,10 @@ const ProductsPage: React.FC = () => {
         <div className="flex-1 min-w-[200px]">
           <SortOptions />
         </div>
-        <div className="flex-1 min-w-[200px]">
-          {/* Assuming CategoryPanel is the component for categories */}
-          <CategoriesSection />
-        </div>
       </div>
+
+      {/* Categories Section */}
+      <CategoriesSection categories={categories} />
 
       {/* Product Listings */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
