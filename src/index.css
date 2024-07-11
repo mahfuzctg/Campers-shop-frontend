@@ -1,7 +1,31 @@
+/* Import slick-carousel styles before other styles */
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+/* Tailwind directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Keyframes for the marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Marquee animation */
+.animate-marquee {
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+}
+
+/* Base styles and color variables */
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -57,12 +81,12 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
 
-@layer base {
+  /* Base styling */
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }

@@ -1,11 +1,23 @@
-import { Button } from "./components/ui/button";
+// src/App.tsx (or wherever you are using the Navbar)
 
-const App = () => {
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+
+import Navbar from "./layout/nav/navbar";
+import HomePage from "./pages/home/homePage";
+
+const App: React.FC = () => {
   return (
-    <div>
-      <h1>Welcome to , App Page!</h1>
-      <Button>click here</Button>
-    </div>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        {/* <Route path="/products" element={<ProductsPage />} />
+        <Route path="/products/:id" element={<ProductDetailsPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/about" element={<AboutUsPage />} /> */}
+      </Routes>
+    </>
   );
 };
 
