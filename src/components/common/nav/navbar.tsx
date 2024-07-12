@@ -38,9 +38,20 @@ const Navbar: React.FC = () => {
             Products
           </Link>
           <Link
-            to="/about"
+            to="/product-management"
             className={`px-3 py-2 rounded-md text-sm font-medium ${
-              isActive("/about")
+              isActive("/product-management")
+                ? "bg-gray-600"
+                : "text-white hover:bg-gray-700"
+            }`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            ProductsManagement
+          </Link>
+          <Link
+            to="/about-us"
+            className={`px-3 py-2 rounded-md text-sm font-medium ${
+              isActive("/about-us")
                 ? "bg-gray-600"
                 : "text-white hover:bg-gray-700"
             }`}
@@ -91,9 +102,22 @@ const Navbar: React.FC = () => {
           Products
         </Link>
         <Link
-          to="/about"
+          to="//product-management"
           className={`px-3 py-2 rounded-md text-sm font-medium ${
-            isActive("/about") ? "bg-gray-600" : "text-white hover:bg-gray-700"
+            isActive("/product-management")
+              ? "bg-gray-600"
+              : "text-white hover:bg-gray-700"
+          }`}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          ProductsManagement
+        </Link>
+        <Link
+          to="/about-us"
+          className={`px-3 py-2 rounded-md text-sm font-medium ${
+            isActive("/about-us")
+              ? "bg-gray-600"
+              : "text-white hover:bg-gray-700"
           }`}
           onClick={() => setIsMenuOpen(false)}
         >
