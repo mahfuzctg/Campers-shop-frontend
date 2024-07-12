@@ -1,18 +1,16 @@
-export interface IProduct {
-  _id: string;
-  name: string;
-  price: number;
-  description: string;
-  category: string;
-  stockQuantity: number;
-  images: string[];
-}
+import { Key } from "react";
 
-export interface ICartItem {
-  _id: string | undefined;
-  productId: string;
+export interface Product {
+  id: Key | null | undefined;
+
+  imageUrl: string | undefined;
+  _id: string; // Using _id from backend
   name: string;
+  description: string;
   price: number;
-  quantity: number;
+  category: string;
+  images: string[]; // Using images array from backend
   stockQuantity: number;
+  ratings: number;
+  tags: string[];
 }

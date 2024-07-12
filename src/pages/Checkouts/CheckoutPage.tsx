@@ -19,6 +19,13 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
+// Define the type for the cart items
+type CartItem = {
+  _id: string;
+  quantity: number;
+  [key: string]: any; // Add this to allow other properties
+};
+
 const Checkout = () => {
   const [onCash, setIsOnCash] = useState("");
   const navigate = useNavigate();
@@ -32,15 +39,18 @@ const Checkout = () => {
   const [addPayment] = useAddOrderMutation();
   const [updateCartInfo] = useUpdateCartInfoMutation();
 
-  const cart = useAppSelector((state) => state.cart);
-  const updatedProductData = cart.map((item) => {
-    return {
-      _id: item._id,
-      quantity: item.quantity,
-    };
-  });
+  const cart = useAppSelector((state) => state.cart as CartItem[]);
+  const updatedProductData = cart.map((item) => ({
+    _id: item._id,
+    quantity: item.quantity,
+  }));
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: {
+    name: string;
+    email: string;
+    phone: string;
+    address: string;
+  }) => {
     const orderData = {
       name: data.name,
       email: data.email,
@@ -75,7 +85,7 @@ const Checkout = () => {
         className="p-5 bg-gray-50 border border-gray-300 m-4 rounded-xl"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className=" flex flex-col gap-6 py-4">
+        <div className="flex flex-col gap-6 py-4">
           <div className="flex flex-col gap-2">
             <Label htmlFor="name" className="">
               Name
@@ -86,7 +96,7 @@ const Checkout = () => {
               {...register("name", { required: true })}
             />
             {errors.name && (
-              <p className="text-red-500 text-sm ">Name is required</p>
+              <p className="text-red-500 text-sm">Name is required</p>
             )}
           </div>
           <div className="flex flex-col gap-2">
@@ -128,7 +138,7 @@ const Checkout = () => {
             )}
           </div>
 
-          <div className="flex  flex-col gap-2">
+          <div className="flex flex-col gap-2">
             <Select required onValueChange={(value) => setIsOnCash(value)}>
               <SelectTrigger className="">
                 <SelectValue placeholder="Select Payment Method" />

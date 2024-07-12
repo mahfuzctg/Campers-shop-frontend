@@ -31,7 +31,7 @@ const categoryData = [
 const CategorySection = () => {
   return (
     <section className="my-20 lg:my-28  px-3 lg:px-0 ">
-      <div className="mx-auto text-center max-w-3xl mb-8 space-y-2">
+      <div className="mx-auto  text-center max-w-3xl mb-8 space-y-2">
         <p className="text-orange-500 font-semibold text-sm md:text-lg">
           Products Categories
         </p>
@@ -45,14 +45,14 @@ const CategorySection = () => {
           experience.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
         {categoryData.map((category) => (
           <div
             key={category.id}
-            className="h-[490px]  bg-slate-500 rounded-lg group overflow-hidden relative"
+            className="h-[490px]  bg-slate-500 rounded-xl group overflow-hidden relative"
           >
             <img
-              className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-200"
+              className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-200"
               src={category.image}
               alt="category-image"
             />

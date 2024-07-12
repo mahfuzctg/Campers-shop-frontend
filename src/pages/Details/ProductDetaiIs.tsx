@@ -135,7 +135,7 @@ const ProductDetails = () => {
                 !data?.data?.stock ||
                 data?.data?.quantity === currentProduct?.quantity
               }
-              className="w-full bg-gray-600 hover:bg-gray-950-600 mt-4"
+              className="w-full bg-gray-600 text-white hover:bg-gray-500 mt-4"
             >
               Add To Cart
             </Button>

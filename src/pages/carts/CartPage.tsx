@@ -1,4 +1,5 @@
 import { useGetProductsQuery } from "@/redux/api/baseApi";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/hook";
 import {
   decreaseQuantity,
   deleteItem,
@@ -14,25 +15,44 @@ import {
   TableHeader,
   TableRow,
 } from "@/root/ui/table";
-
-import { useAppDispatch, useAppSelector } from "@/redux/hooks/hook";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+
+// Define types for CartItem and Product
+type CartItem = {
+  _id: string;
+  image: string;
+  name: string;
+  price: number; // Ensure price is a number
+  quantity: number;
+  category: string;
+};
+
+type Product = {
+  _id: string;
+  quantity: number;
+  stock: boolean;
+  [key: string]: any;
+};
 
 const CartPage = () => {
   const { data: products, isLoading } = useGetProductsQuery(undefined);
 
-  const cart = useAppSelector((state) => state.cart);
+  const cart = useAppSelector((state) => state.cart as CartItem[]);
   const dispatch = useAppDispatch();
 
-  const totalPrice = cart.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
+  // Calculate total price, ensuring it has two decimal places
+  const totalPrice = cart
+    .reduce((total, item) => total + item.price * item.quantity, 0)
+    .toFixed(2); // Use toFixed to format price to 2 decimal places
 
-  const isDisabled = (item) => {
-    const result = products.data.find((data) => data._id === item._id);
-    return result.quantity === item.quantity || result.stock === false;
+  const isDisabled = (item: CartItem) => {
+    const result = products?.data.find(
+      (data: Product) => data._id === item._id
+    );
+    return result
+      ? result.quantity === item.quantity || result.stock === false
+      : false;
   };
 
   const handleDeleteItem = (id: string) => {
@@ -49,7 +69,7 @@ const CartPage = () => {
         dispatch(deleteItem(id));
         Swal.fire({
           title: "Deleted!",
-          text: "Your file has been deleted.",
+          text: "Your item has been deleted.",
           icon: "success",
         });
       }
@@ -59,14 +79,15 @@ const CartPage = () => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
+
   return (
-    <section className=" max-w-screen-xl mx-auto py-20 min-h-[400px]">
-      <div className="max-w-screen-xl mx-auto py-20 px-3 ">
+    <section className="max-w-screen-xl mx-auto py-20 min-h-[400px]">
+      <div className="max-w-screen-xl mx-auto py-20 px-3">
         <div className="border border-gray-400 rounded-lg p-8">
           <div className="pb-6 flex items-center justify-between border-b border-gray-400">
             <h2 className="text-xl text-gray-700 font-bold">Your Cart</h2>
             <h2 className="text-xl text-gray-700 font-bold">
-              Total product: {cart?.length}
+              Total product: {cart.length}
             </h2>
           </div>
           <Table className="p-12 min-w-[570px] md:w-full">
@@ -80,7 +101,7 @@ const CartPage = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {cart?.map((item) => (
+              {cart.map((item) => (
                 <TableRow key={item._id}>
                   <TableCell>
                     <img
@@ -91,8 +112,10 @@ const CartPage = () => {
                   </TableCell>
                   <TableCell className="text-sm">
                     <p className="flex flex-col gap-1">
-                      <p> {item.name}</p>{" "}
-                      <p className="text-orange-500">$ {item.price} USD</p>
+                      <span>{item.name}</span>
+                      <span className="text-orange-500">
+                        ${item.price.toFixed(2)} USD
+                      </span>
                     </p>
                   </TableCell>
                   <TableCell className="flex items-center gap-3">
@@ -100,7 +123,7 @@ const CartPage = () => {
                       onClick={() => dispatch(decreaseQuantity(item._id))}
                       disabled={item.quantity === 1}
                       className="border border-gray-300"
-                      variant={"ghost"}
+                      variant="ghost"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -117,13 +140,13 @@ const CartPage = () => {
                         />
                       </svg>
                     </Button>
-                    <p className="text-lg font-semibold text-gray-700">
+                    <span className="text-lg font-semibold text-gray-700">
                       {item.quantity}
-                    </p>
+                    </span>
                     <Button
                       onClick={() => dispatch(increaseQuantity(item._id))}
                       disabled={isDisabled(item)}
-                      variant={"ghost"}
+                      variant="ghost"
                       className="border border-gray-300"
                     >
                       <svg
@@ -146,7 +169,7 @@ const CartPage = () => {
                   <TableCell className="text-right space-x-2">
                     <Button
                       onClick={() => handleDeleteItem(item._id)}
-                      variant={"destructive"}
+                      variant="destructive"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -170,12 +193,14 @@ const CartPage = () => {
             <TableFooter>
               <TableRow>
                 <TableCell colSpan={3}>Total Amount</TableCell>
-                <TableCell className="text-right">${totalPrice}.00</TableCell>
-                <Link to="/checkout">
-                  <Button className="bg-green-500 hover:bg-green-600 mt-2">
-                    Place Order
-                  </Button>
-                </Link>
+                <TableCell className="text-right">${totalPrice}</TableCell>
+                <TableCell className="text-right">
+                  <Link to="/checkout">
+                    <Button className="bg-gray-600 hover:bg-gray-500 mt-2 text-white">
+                      Place Order
+                    </Button>
+                  </Link>
+                </TableCell>
               </TableRow>
             </TableFooter>
           </Table>

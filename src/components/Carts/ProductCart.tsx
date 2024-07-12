@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ProductCart = ({ product }) => {
   return (
-    <div className="lg:max-w-80 h-full rounded-lg border border-gray-200 p-4 flex flex-col gap-4 hover:-translate-y-1 transition-transform duration-100">
+    <div className="lg:max-w-80 h-full rounded-xl border border-gray-200 p-4 flex flex-col gap-4 hover:-translate-y-1 transition-transform duration-100">
       <div className="flex-1 flex-grow overflow-hidden rounded-lg">
         <img
           className="w-full object-cover h-64 md:h-72 lg:h-56 rounded-lg"
@@ -14,7 +14,7 @@ const ProductCart = ({ product }) => {
           }} // Fallback in case of broken image link
         />
       </div>
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 ">
         <div className="space-y-1">
           <h3 className="text-xl font-bold text-gray-700">{product?.name}</h3>
           <div className="flex justify-between items-center">
@@ -46,7 +46,7 @@ const ProductCart = ({ product }) => {
           </div>
         </div>
         <Link to={`/products-details/${product?._id}`}>
-          <Button className="w-full bg-gray-600 hover:bg-gray-500">
+          <Button className="w-full bg-gray-600 text-white hover:bg-gray-500 rounded-xl">
             See Details
           </Button>
         </Link>

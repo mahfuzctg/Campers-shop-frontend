@@ -1,4 +1,5 @@
 import App from "@/App";
+import NotFoundPage from "@/components/error/Error";
 import About from "@/pages/About/About";
 import CartPage from "@/pages/Carts/CartPage";
 import Checkout from "@/pages/Checkouts/CheckoutPage";
@@ -18,7 +19,7 @@ export const router: ReturnType<typeof createBrowserRouter> =
     {
       path: "/",
       element: <App />,
-      // TODO : there will be a error page
+      errorElement: <NotFoundPage />,
       children: [
         {
           path: "/",

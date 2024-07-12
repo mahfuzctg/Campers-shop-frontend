@@ -1,3 +1,5 @@
+import { Key } from "readline";
+
 export interface Product {
   id: Key | null | undefined;
   imageUrl: string | undefined;

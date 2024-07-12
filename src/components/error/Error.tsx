@@ -1,9 +1,22 @@
-const Error = () => {
+import { Link } from "react-router-dom";
+
+const NotFoundPage = () => {
   return (
-    <div>
-      <h1>Welcome to , error Page!</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <img
+        src="/src/assets/Error/Error-404-Page-Not-Found.png"
+        alt="404 Error"
+        className="w-1/2 max-w-sm mb-8"
+      />
+
+      <p className="text-lg text-gray-500 mb-8">
+        The page you're looking for doesn't exist.
+      </p>
+      <Link to="/" className="text-gray-600 text-2xl font-bold hover:underline">
+        Go back to Home
+      </Link>
     </div>
   );
 };
 
-export default Error;
+export default NotFoundPage;
