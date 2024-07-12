@@ -29,6 +29,7 @@ const ProductDetails = () => {
 
     toast.success("Product added to cart");
   };
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -42,7 +43,7 @@ const ProductDetails = () => {
           alt=""
         />
       </div>
-      <div className="flex-1 ">
+      <div className="flex-1">
         <div className="py-4 border-b border-gray-400 space-y-2">
           <h2 className="text-4xl font-medium text-gray-800 font-young-serif">
             {data?.data?.name}
@@ -55,10 +56,10 @@ const ProductDetails = () => {
         <div className="pt-5">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <p className="text-gray-600 text-xl font-bold">Rating:</p>{" "}
+              <p className="text-gray-600 text-xl font-bold">Rating:</p>
               <Rating
-                emptySymbol={<Star size={30} color="orange" />}
-                fullSymbol={<Star size={30} color="orange" fill="orange" />}
+                emptySymbol={<Star size={30} color="gray" />}
+                fullSymbol={<Star size={30} color="orange" />}
                 fractions={2}
                 initialRating={data?.data?.rating}
                 stop={5}

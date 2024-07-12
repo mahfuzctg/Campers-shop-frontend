@@ -136,7 +136,6 @@ const Checkout = () => {
               <SelectContent>
                 <SelectGroup>
                   <SelectItem value="cash">Cash on Delivery</SelectItem>
-                  <SelectItem value="cash">Online Payment</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>

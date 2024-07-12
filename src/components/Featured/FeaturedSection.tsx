@@ -1,4 +1,5 @@
 import { useGetProductsQuery } from "@/redux/api/baseApi";
+import { Key } from "react";
 import ProductCart from "../Carts/ProductCart";
 
 const FeaturedSection = () => {
@@ -26,7 +27,7 @@ const FeaturedSection = () => {
           ? loadingState
           : data?.data
               ?.slice(-4)
-              .map((product) => (
+              .map((product: { _id: Key | null | undefined }) => (
                 <ProductCart key={product._id} product={product} />
               ))}
       </div>
