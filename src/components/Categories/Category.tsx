@@ -33,7 +33,7 @@ const CategorySection = () => {
     <section className="my-20 lg:my-28  px-3 lg:px-0 ">
       <div className="mx-auto text-center max-w-3xl mb-8 space-y-2">
         <p className="text-orange-500 font-semibold text-sm md:text-lg">
-          MEET THE FAMILY
+          Products Categories
         </p>
         <h2 className="text-3xl md:text-4xl text-gray-800 font-bold text-center font-young-serif">
           What we have in store for you.

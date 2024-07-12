@@ -3,23 +3,25 @@ import { Link } from "react-router-dom";
 
 const ProductCart = ({ product }) => {
   return (
-    <div className=" lg:max-w-80 h-full rounded-lg border border-gray-200 p-4 flex flex-col gap-4 hover:-translate-y-1 transition-transform duration-100">
+    <div className="lg:max-w-80 h-full rounded-lg border border-gray-200 p-4 flex flex-col gap-4 hover:-translate-y-1 transition-transform duration-100">
       <div className="flex-1 flex-grow overflow-hidden rounded-lg">
         <img
           className="w-full object-cover h-64 md:h-72 lg:h-56 rounded-lg"
           src={product?.image}
           alt={product?.name}
+          onError={(e) => {
+            e.currentTarget.src = "path/to/placeholder-image.jpg";
+          }} // Fallback in case of broken image link
         />
       </div>
       <div className="flex flex-col gap-5">
         <div className="space-y-1">
-          <h3 className="text-xl font-bold text-gray-700 ">{product?.name}</h3>
-
+          <h3 className="text-xl font-bold text-gray-700">{product?.name}</h3>
           <div className="flex justify-between items-center">
-            <h3 className=" font-semibold text-orange-500">
+            <h3 className="font-semibold text-orange-500">
               $ {product?.price} USD
             </h3>
-            <p className="text-sm text-gray-500 font-medium flex items-center gap-1">
+            <p className="text-sm text-gray-500  font-medium flex items-center gap-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -43,9 +45,8 @@ const ProductCart = ({ product }) => {
             </p>
           </div>
         </div>
-
         <Link to={`/products-details/${product?._id}`}>
-          <Button className="w-full bg-green-500 hover:bg-green-600">
+          <Button className="w-full bg-gray-600 hover:bg-gray-500">
             See Details
           </Button>
         </Link>

@@ -72,7 +72,7 @@ const Checkout = () => {
       </div>
 
       <form
-        className="p-5 bg-gray-50 border border-gray-300 rounded-lg"
+        className="p-5 bg-gray-50 border border-gray-300 m-4 rounded-xl"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className=" flex flex-col gap-6 py-4">
@@ -128,7 +128,7 @@ const Checkout = () => {
             )}
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex  flex-col gap-2">
             <Select required onValueChange={(value) => setIsOnCash(value)}>
               <SelectTrigger className="">
                 <SelectValue placeholder="Select Payment Method" />
@@ -136,13 +136,14 @@ const Checkout = () => {
               <SelectContent>
                 <SelectGroup>
                   <SelectItem value="cash">Cash on Delivery</SelectItem>
+                  <SelectItem value="cash">Online Payment</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
           </div>
 
           <Button
-            className="w-full bg-green-500 hover:bg-green-600"
+            className="w-full bg-gray-600 text-white hover:bg-gray-500 rounded-xl"
             type="submit"
           >
             Place Order

@@ -72,8 +72,8 @@ const Products = () => {
           className="p-2 border rounded ml-2"
         >
           <option value="">All Categories</option>
-          <option value="category1">Category 1</option>
-          <option value="category2">Category 2</option>
+          <option value="Backpacks">Backpacks</option>
+          <option value="Electronics">Electronics</option>
         </select>
         <input
           type="range"
@@ -88,7 +88,7 @@ const Products = () => {
           onChange={handleSortChange}
           className="p-2 border rounded ml-2"
         >
-          <option value="none">Sort By</option>
+          <option value="none">Sort By Price</option>
           <option value="price-asc">Price: Low to High</option>
           <option value="price-desc">Price: High to Low</option>
         </select>
