@@ -3,15 +3,9 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@radix-ui/react-accordion";
+} from "@/root/ui/accordion";
 
 const FAQData = [
-  {
-    id: 1,
-    question: "What types of camping gear do you offer?",
-    answer:
-      "We offer a wide range of camping gear including tents, sleeping bags, cooking equipment, outdoor furniture, and various accessories to enhance your camping experience.",
-  },
   {
     id: 2,
     question: "How do I place an order?",
@@ -72,11 +66,19 @@ const FAQSection = () => {
   return (
     <section className="my-20 lg:my-28 px-3 lg:px-0">
       <div className="mx-auto text-center max-w-3xl mb-8 space-y-2">
-        <p className="text-orange-500 font-semibold text-sm md:text-lg">FAQ</p>
-        <h2 className="text-3xl md:text-4xl text-gray-800 font-bold text-center font-young-serif">
+        <p
+          data-aos="fade-up"
+          className="text-orange-500 font-semibold text-sm md:text-lg"
+        >
+          FAQ
+        </p>
+        <h2
+          data-aos="fade-up"
+          className="text-3xl md:text-4xl text-gray-800 font-bold text-center font-young-serif"
+        >
           Frequently Asked Questions.
         </h2>
-        <p className="text-gray-600">
+        <p data-aos="fade-up" className="text-gray-600">
           Got questions? Find answers to common inquiries about our products,
           shipping, returns, and more. If you can't find what you're looking
           for, contact our support team.
@@ -85,8 +87,12 @@ const FAQSection = () => {
       <div>
         <Accordion type="single" collapsible className="w-full">
           {FAQData.map((item) => (
-            <AccordionItem value={`item-${item.id}`} key={item.id}>
-              <AccordionTrigger className="text-xl  text-gray-800">
+            <AccordionItem
+              data-aos="fade-up"
+              value={`item-${item.id}`}
+              key={item.id}
+            >
+              <AccordionTrigger className="text-xl text-gray-800">
                 {item.question}
               </AccordionTrigger>
               <AccordionContent>{item.answer}</AccordionContent>

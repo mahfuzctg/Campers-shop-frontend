@@ -1,87 +1,91 @@
-import { Card, CardContent } from "@/root/ui/card";
-import Autoplay from "embla-carousel-autoplay";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { Button } from "@/root/ui/button";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/root/ui/carousel";
-import { Link } from "react-router-dom";
+const scrollingTexts = [
+  "New Arrivals",
+  "Limited Time Offer",
+  "Free Shipping on Orders Over $50",
+  "Exclusive Camping Gear",
+];
 
-import carousel1 from "../../assets/images/Carousel/carousel-1.jpg";
-import carousel2 from "../../assets/images/Carousel/carousel-2.jpg";
+const bounceAnimation = {
+  y: [0, -30, 0],
+  opacity: [1, 0.5, 1],
+  transition: {
+    duration: 0.6,
+    ease: "easeInOut",
+    repeat: Infinity,
+    repeatDelay: 2,
+  },
+};
 
 const HeroSection = () => {
-  const sliderImg = [
-    {
-      id: 1,
-      image: carousel1,
-    },
-    {
-      id: 2,
-      image: carousel2,
-    },
-  ];
+  const textRef = useRef<HTMLDivElement>(null);
+  const controls = useAnimation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const textElement = textRef.current;
+    let textIndex = 0;
+
+    const updateText = () => {
+      if (textElement) {
+        textElement.textContent = scrollingTexts[textIndex];
+        textIndex = (textIndex + 1) % scrollingTexts.length;
+      }
+    };
+
+    const intervalId = setInterval(updateText, 3000);
+    updateText(); // Initial call
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    controls.start({
+      y: [0, -30, 0],
+      opacity: [1, 0.5, 1],
+      transition: {
+        duration: 0.6,
+        ease: "easeInOut",
+        repeat: Infinity,
+        repeatDelay: 2,
+      },
+    });
+  }, [controls]);
+
   return (
-    <section
-      style={{
-        backgroundImage: `url(${sliderImg})`,
-      }}
-      className="h-[450px] md:h-[620px] bg-cover bg-center bg-no-repeat lg:mt-2 lg:rounded-lg "
-    >
-      <div className="bg-gradient-to-r from-gray-600 to-gray-600/20 h-[400px] md:h-[620px] w-full lg:flex items-center justify-center gap-9 lg:rounded-lg">
-        <div className="flex-1 p-4 space-y-4 flex flex-col items-center justify-center">
-          <p className="text-orange-500 font-semibold text-sm md:text-xl">
-            Welcome to campers shop.!
-          </p>
-          <h1 className="text-3xl md:text-5xl font-medium text-gray-100 font-young-serif">
-            Gear for when it <br /> actually matters.
-          </h1>
-          <p className="lg:text-lg text-gray-300 max-w-lg text-center">
-            Create your dream campsite with our camping essentials. Under the
-            stars, every night is an adventure waiting to unfold.
-          </p>
-          <Link to="/products">
-            <Button className=" text-2xl text-white bg-gray-600 rounded-xl">
-              Visit
-            </Button>
-          </Link>
-        </div>
-        <div className="flex-1 relative w-full h-[150px] md:h-[300px] lg:h-[400px] px-2 lg:p-0 lg:mr-4">
-          <Carousel
-            className=" overflow-hidden rounded-lg shadow-lg"
-            plugins={[
-              Autoplay({
-                delay: 4000,
-              }),
-            ]}
-          >
-            <CarouselContent className="flex">
-              {sliderImg.map((slider) => (
-                <CarouselItem key={slider.id} className="min-w-full">
-                  <Card className="bg-transparent border-0">
-                    <CardContent className="flex items-center justify-center h-[150px] md:h-[300px] lg:h-[400px] p-0">
-                      <img
-                        src={slider?.image}
-                        className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                        alt=""
-                      />
-                    </CardContent>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-2 rounded-full cursor-pointer hover:bg-opacity-75 transition-opacity duration-300">
-              &#9664;
-            </CarouselPrevious>
-            <CarouselNext className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 p-2 rounded-full cursor-pointer hover:bg-opacity-75 transition-opacity duration-300">
-              &#9654;
-            </CarouselNext>
-          </Carousel>
-        </div>
+    <section className="relative h-screen bg-black text-white">
+      <img
+        src="/src/assets/images/Banner/hero-png.png"
+        alt="Hero"
+        className="w-full h-full object-cover opacity-50"
+      />
+      <div className="absolute bottom-0 w-full text-center p-4 bg-white bg-opacity-30 text-black">
+        <div ref={textRef} className="text-lg font-semibold"></div>
+      </div>
+      <div className="absolute bottom-20 text-center p-4 w-full ">
+        <motion.div
+          animate={controls}
+          className="text-4xl font-bold  my-8 mx-auto rounded-xl "
+        >
+          Welcome to Campers Shop
+        </motion.div>
+        <motion.p
+          className="text-xl bg-black bg-opacity-20 w-3/6 mx-auto rounded-xl"
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 50, damping: 10 }}
+        >
+          Explore top-quality gear designed for your outdoor escapades.
+        </motion.p>
+        <button
+          onClick={() => navigate("/products")}
+          className="mt-6 py-2 px-4   bg-gray-600 text-white font-bold  hover:bg-gray-500 rounded-xl opacity-85"
+        >
+          Explore More
+        </button>
       </div>
     </section>
   );
