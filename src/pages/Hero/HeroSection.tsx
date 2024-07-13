@@ -71,7 +71,7 @@ const HeroSection = () => {
         </motion.p>
         <button
           onClick={() => navigate("/products")}
-          className="mt-6 py-2 px-4   bg-gray-600 text-white font-bold  hover:bg-gray-500 rounded-xl opacity-85"
+          className="mt-6 py-2 px-4  bg-orange-600 text-white font-bold  hover:bg-gray-500 rounded-xl opacity-85"
         >
           Explore More
         </button>

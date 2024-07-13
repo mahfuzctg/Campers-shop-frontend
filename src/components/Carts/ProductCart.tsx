@@ -46,7 +46,7 @@ const ProductCart = ({ product }) => {
           </div>
         </div>
         <Link to={`/products-details/${product?._id}`}>
-          <Button className="w-full bg-gray-600 text-white hover:bg-gray-500 rounded-xl">
+          <Button className="w-full bg-orange-500 text-white hover:bg-gray-500 rounded-xl">
             See Details
           </Button>
         </Link>

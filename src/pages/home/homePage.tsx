@@ -20,7 +20,7 @@ const HomePage = () => {
   return (
     <>
       <HeroSection />
-      <div className="container">
+      <div className="container ">
         <div data-aos="fade-up">
           <BestSelling />
         </div>

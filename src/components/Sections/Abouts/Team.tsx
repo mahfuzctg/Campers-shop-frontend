@@ -1,45 +1,47 @@
 import { Link } from "react-router-dom";
-
-import {
-  default as team1,
-  default as team4,
-} from "../../../assets/images/Team/team-1.jpg";
-import {
-  default as team2,
-  default as team5,
-} from "../../../assets/images/Team/team-2.jpg";
+import team1 from "../../../assets/images/Team/team-1.jpg";
+import team2 from "../../../assets/images/Team/team-2.jpg";
 import team3 from "../../../assets/images/Team/team-3.jpg";
+import team4 from "../../../assets/images/Team/team-4.jpg";
+import team5 from "../../../assets/images/Team/team-5.jpg";
+import team6 from "../../../assets/images/Team/team-6.jpg";
 
 const teamData = [
   {
     id: 1,
     image: team1,
     name: "Woodie Brandon",
-    role: "PRODUCT DESIGNER",
+    role: "Product Expert",
   },
   {
     id: 2,
     image: team2,
     name: "Alex Jenna",
-    role: "QA",
+    role: "Customer Support Specialist",
   },
   {
     id: 3,
     image: team3,
     name: "Jerome Simone",
-    role: "CEO",
+    role: "Marketing Specialist",
   },
   {
     id: 4,
     image: team4,
-    name: "Woodie Brandon",
-    role: "PRODUCT DESIGNER",
+    name: "Lucas Wilson",
+    role: "Sales Manager",
   },
   {
     id: 5,
     image: team5,
-    name: "Alex Jenna",
-    role: "QA",
+    name: "Sara Thompson",
+    role: "Logistics Coordinator",
+  },
+  {
+    id: 6,
+    image: team6,
+    name: "Mia Davis",
+    role: "Financial Analyst",
   },
 ];
 
@@ -47,25 +49,25 @@ const Team = () => {
   return (
     <section className="my-20 lg:my-28 max-w-screen-xl mx-auto px-3 lg:px-0">
       <div className="mx-auto text-center max-w-3xl mb-8 space-y-2">
-        <p className="text-orange-500 font-semibold text-sm md:text-lg">
+        <p className="text-green-500 font-semibold text-sm md:text-lg">
           OUR TEAM
         </p>
         <h2 className="text-3xl md:text-4xl text-gray-800 font-bold text-center font-young-serif">
           Meet Our Team
         </h2>
         <p className="text-gray-600">
-          Our dedicated team of camping enthusiasts is passionate about
-          providing you with the best products and service. Each member brings a
-          unique set of skills and experiences to ensure your camping adventures
-          are memorable and enjoyable. From product experts to customer support,
-          we work together to serve the camping community with excellence.
+          Our team of camping enthusiasts is committed to delivering top-notch
+          products and services. Each member brings a unique set of skills and
+          experiences, ensuring your camping adventures are unforgettable and
+          enjoyable. From product experts to customer support, we collaborate to
+          provide the highest level of service to the camping community.
         </p>
       </div>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {teamData.map((item) => (
           <div
             key={item.id}
-            className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md"
+            className="flex flex-col items-center bg-white p-6 rounded-2xl shadow-md"
           >
             <img
               className="w-32 h-32 rounded-full object-cover"

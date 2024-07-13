@@ -83,10 +83,10 @@ const CartPage = () => {
   return (
     <section className="max-w-screen-xl mx-auto py-20 min-h-[400px]">
       <div className="max-w-screen-xl mx-auto py-20 px-3">
-        <div className="border border-gray-400 rounded-lg p-8">
-          <div className="pb-6 flex items-center justify-between border-b border-gray-400">
-            <h2 className="text-xl text-gray-700 font-bold">Your Cart</h2>
-            <h2 className="text-xl text-gray-700 font-bold">
+        <div className="border border-orange-500 rounded-lg p-8">
+          <div className="pb-6 flex items-center justify-between border-b border-orange-500">
+            <h2 className="text-xl text-orange-500 font-bold">Your Cart</h2>
+            <h2 className="text-xl text-orange-500 font-bold">
               Total product: {cart.length}
             </h2>
           </div>
@@ -166,8 +166,9 @@ const CartPage = () => {
                     </Button>
                   </TableCell>
                   <TableCell>{item.category}</TableCell>
-                  <TableCell className="text-right space-x-2">
+                  <TableCell className="text-right space-x-2 ">
                     <Button
+                      className="text-orange-600 "
                       onClick={() => handleDeleteItem(item._id)}
                       variant="destructive"
                     >
@@ -196,7 +197,7 @@ const CartPage = () => {
                 <TableCell className="text-right">${totalPrice}</TableCell>
                 <TableCell className="text-right">
                   <Link to="/checkout">
-                    <Button className="bg-gray-600 hover:bg-gray-500 mt-2 text-white">
+                    <Button className="bg-orange-500 hover:bg-orange-400 mt-2 rounded-xl text-white">
                       Place Order
                     </Button>
                   </Link>
