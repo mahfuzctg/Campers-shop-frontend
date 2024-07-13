@@ -1,11 +1,17 @@
+/* Importing Google Fonts before any other CSS rules */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+/* Styles for image magnifier container */
 .img-magnifier-container {
   position: relative;
 }
 
+/* Styles for magnifier image */
 .magnifier-img {
   width: 100%;
 }
 
+/* Styles for the magnifier itself */
 .magnifier-image {
   width: 200px;
   height: 200px;

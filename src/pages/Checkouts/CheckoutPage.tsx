@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   useAddOrderMutation,
   useUpdateCartInfoMutation,
 } from "@/redux/api/baseApi";
 import { useAppSelector } from "@/redux/hooks/hook";
-import { Button } from "@/root/ui/button";
+import Button from "@/root/ui/button";
 import { Input } from "@/root/ui/input";
 import {
   Select,
@@ -15,9 +16,17 @@ import {
 } from "@/root/ui/select";
 import { Label } from "@radix-ui/react-label";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+
+// Define the type for form data
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+}
 
 // Define the type for the cart items
 type CartItem = {
@@ -27,14 +36,15 @@ type CartItem = {
 };
 
 const Checkout = () => {
-  const [onCash, setIsOnCash] = useState("");
+  const [onCash, setIsOnCash] = useState<string>("");
   const navigate = useNavigate();
 
+  // Use the defined type for useForm
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<FormData>();
 
   const [addPayment] = useAddOrderMutation();
   const [updateCartInfo] = useUpdateCartInfoMutation();
@@ -45,12 +55,8 @@ const Checkout = () => {
     quantity: item.quantity,
   }));
 
-  const onSubmit = async (data: {
-    name: string;
-    email: string;
-    phone: string;
-    address: string;
-  }) => {
+  // Define the onSubmit function with the FormData type
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     const orderData = {
       name: data.name,
       email: data.email,
@@ -74,15 +80,15 @@ const Checkout = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-6">
+    <div className="max-w-lg mt-24 mx-auto ">
       <div>
-        <h1 className="text-3xl font-bold mb-5 text-center text-gray-800">
-          Checkout Form
+        <h1 className="text-3xl font-bold mb-5 text-center text-orange-500">
+          CHECKOUT PAGE
         </h1>
       </div>
 
       <form
-        className="p-5 bg-gray-50 border border-gray-300 m-4 rounded-xl"
+        className="p-5 bg-white border border-orange-500 m-4 rounded-xl"
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="flex flex-col gap-6 py-4">
@@ -152,7 +158,7 @@ const Checkout = () => {
           </div>
 
           <Button
-            className="w-full bg-gray-600 text-white hover:bg-gray-500 rounded-xl"
+            className="w-full bg-orange-500 text-white hover:bg-orange-600 rounded-xl"
             type="submit"
           >
             Place Order

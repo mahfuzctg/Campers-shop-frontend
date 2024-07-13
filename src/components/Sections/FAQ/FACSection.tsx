@@ -1,3 +1,4 @@
+ 
 import {
   Accordion,
   AccordionContent,
@@ -74,14 +75,14 @@ const FAQSection = () => {
         </p>
         <h2
           data-aos="fade-up"
-          className="text-3xl md:text-4xl text-gray-800 font-bold text-center font-young-serif"
+          className="text-3xl md:text-4xl uppercase text-gray-600 font-bold text-center font-young-serif"
         >
           Frequently Asked Questions.
         </h2>
-        <p data-aos="fade-up" className="text-gray-600">
-          Got questions? Find answers to common inquiries about our products,
-          shipping, returns, and more. If you can't find what you're looking
-          for, contact our support team.
+        <p data-aos="fade-up" className="text-gray-600 font-roboto text-sm">
+          Have Questions? Discover answers to frequently asked questions about
+          our products, shipping, returns, and more. If you need further
+          assistance, our support team is here to help.
         </p>
       </div>
       <div>
@@ -92,10 +93,12 @@ const FAQSection = () => {
               value={`item-${item.id}`}
               key={item.id}
             >
-              <AccordionTrigger className="text-xl text-gray-800">
+              <AccordionTrigger className="text-lg  uppercase text-gray-600">
                 {item.question}
               </AccordionTrigger>
-              <AccordionContent>{item.answer}</AccordionContent>
+              <AccordionContent className="text-gray-600 px-5">
+                {item.answer}
+              </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>

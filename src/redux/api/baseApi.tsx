@@ -2,7 +2,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://campers-shop-backend-tan.vercel.app/",
+  }),
   tagTypes: ["Products"],
   endpoints: (builder) => ({
     addProduct: builder.mutation({
@@ -15,10 +17,34 @@ export const baseApi = createApi({
     }),
 
     getProducts: builder.query({
-      query: () => ({
-        url: "/products",
-        method: "GET",
-      }),
+      query: (query) => {
+        const params = new URLSearchParams();
+
+        if (query?.search) {
+          params.append("searchValue", query.search);
+        }
+
+        if (query?.category) {
+          params.append("category", query.category);
+        }
+
+        if (query?.minPrice) {
+          params.append("minPrice", query.minPrice);
+        }
+
+        if (query?.maxPrice) {
+          params.append("maxPrice", query.maxPrice);
+        }
+
+        if (query?.sort) {
+          params.append("sort", query.sort);
+        }
+
+        return {
+          url: `/products?${params.toString()}`,
+          method: "GET",
+        };
+      },
       providesTags: ["Products"],
     }),
     getSingleProduct: builder.query({

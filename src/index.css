@@ -1,11 +1,15 @@
 /* Import slick-carousel styles before other styles */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 @import "slick-carousel/slick/slick.css";
 @import "slick-carousel/slick/slick-theme.css";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
 /* Tailwind directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Keyframes for animation */
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -15,7 +19,7 @@
   }
 }
 
-/* Loader.css */
+/* Loader styles */
 .loader {
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
@@ -24,8 +28,8 @@
   height: 50px;
   animation: spin 1s linear infinite;
 }
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
+/* Body styles */
 body {
   font-family: "Roboto", sans-serif;
   margin: 0;
@@ -34,15 +38,7 @@ body {
   background-color: #f4f4f9;
 }
 
-/* h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: #3498db;
-} */
-
+/* Button styles */
 button {
   border: none;
   padding: 10px 20px;
@@ -51,17 +47,163 @@ button {
   cursor: pointer;
 }
 
-/* button:hover {
-  background-color: #27ae60;
-} */
-
+/* Link styles */
 a {
   color: #e74c3c;
   text-decoration: none;
 }
 
-a:hover {
+/* a:hover {
   background-color: #f4f4f9;
   color: #e74c3c;
-  text-decoration: no-underline;
+  text-decoration: none;
+} */
+
+/* ProductsBanner.css */
+
+.banner-container {
+  position: relative;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.4); /* Darken the banner image with 40% opacity */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 1rem; /* Add padding for smaller screens */
+}
+
+.bouncing-text {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+.bounce-animation {
+  animation: bounce 2s ease infinite;
+}
+
+.gradient-text {
+  background: linear-gradient(
+    90deg,
+    #ffa500,
+    #ffffff
+  ); /* Orange to White gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* Slick-carousel custom styles */
+.slick-slider {
+  position: relative;
+  width: 100%;
+}
+
+.slick-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.slick-prev,
+.slick-next {
+  z-index: 1;
+  color: white;
+  font-size: 24px;
+  line-height: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slick-prev {
+  left: 10px;
+}
+
+.slick-next {
+  right: 10px;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+/* Carousel styling */
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-content {
+  display: flex;
+  flex-wrap: nowrap;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+.carousel-prev,
+.carousel-next {
+  z-index: 10;
+  color: white;
+  font-size: 24px;
+  line-height: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.carousel-prev {
+  left: 10px;
+}
+
+.carousel-next {
+  right: 10px;
+}
+/* css styles for mission */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+  display: flex;
 }

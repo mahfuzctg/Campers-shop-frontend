@@ -5,7 +5,8 @@ import {
   deleteItem,
   increaseQuantity,
 } from "@/redux/slices/cartSlice";
-import { Button } from "@/root/ui/button";
+import Button from "@/root/ui/button";
+
 import {
   Table,
   TableBody,

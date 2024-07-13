@@ -9,9 +9,7 @@ const NotFoundPage = () => {
         className="w-1/2 max-w-sm mb-8"
       />
 
-      <p className="text-lg text-gray-500 mb-8">
-        The page you're looking for doesn't exist.
-      </p>
+      <p className="text-lg text-gray-500 mb-8"></p>
       <Link to="/" className="text-gray-600 text-2xl font-bold hover:underline">
         Go back to Home
       </Link>

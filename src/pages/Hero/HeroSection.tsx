@@ -52,17 +52,20 @@ const HeroSection = () => {
         className="w-full h-full object-cover opacity-50"
       />
       <div className="absolute bottom-0 w-full text-center p-4 bg-white bg-opacity-30 text-black">
-        <div ref={textRef} className="text-lg font-semibold"></div>
+        <div
+          ref={textRef}
+          className="text-lg font-semibold gradient-text"
+        ></div>
       </div>
-      <div className="absolute bottom-20 text-center p-4 w-full ">
+      <div className="absolute bottom-20 text-center p-4 w-full">
         <motion.div
           animate={controls}
-          className="text-4xl font-bold  my-8 mx-auto rounded-xl "
+          className="text-4xl font-bold my-8 mx-auto rounded-xl gradient-text"
         >
           Welcome to Campers Shop
         </motion.div>
         <motion.p
-          className="text-xl bg-black bg-opacity-20 w-3/6 mx-auto rounded-xl"
+          className="text-xl bg-black bg-opacity-20 md:w-3/6 mx-auto rounded-xl"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", stiffness: 50, damping: 10 }}
@@ -71,7 +74,7 @@ const HeroSection = () => {
         </motion.p>
         <button
           onClick={() => navigate("/products")}
-          className="mt-6 py-2 px-4  bg-orange-600 text-white font-bold  hover:bg-gray-500 rounded-xl opacity-85"
+          className="mt-6 py-2 px-4 bg-orange-600 text-white font-bold hover:bg-gray-500 rounded-xl opacity-85"
         >
           Explore More
         </button>

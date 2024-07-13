@@ -2,18 +2,18 @@ const GoogleMap = () => {
   return (
     <section className="my-20 lg:my-28 px-3  min-h-[600px] max-w-screen-xl mx-auto">
       <div className="mb-5">
-        <h2 className="text-3xl md:text-4xl text-gray-800 font-bold text-center font-young-serif">
+        <h2 className="text-3xl lg:text-4xl font-bold text-orange-500 text-center uppercase py-5">
           Our Location
         </h2>
       </div>
       <div className="flex flex-col-reverse md:flex-row justify-between md:items-center">
         <div className="flex-1 space-y-10 mt-3 lg:mt-0">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
+          <h2 className="text-2xl md:text-3xl uppercase font-bold text-gray-600">
             Campers Shop Location
           </h2>
 
           <div>
-            <h3 className="text-xl font-semibold text-gray-700 flex gap-2">
+            <h3 className="text-xl font-semibold text-gray-600 flex gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -33,7 +33,7 @@ const GoogleMap = () => {
             <p className="text-gray-600">10:00 AM - 10:00 PM</p>
           </div>
           <div>
-            <h3 className="text-xl font-semibold text-gray-700 flex gap-2">
+            <h3 className="text-xl font-semibold text-gray-600 flex gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -58,7 +58,7 @@ const GoogleMap = () => {
             <p className="text-gray-600">Event Address</p>
           </div>
           <div>
-            <h3 className="text-xl font-semibold text-gray-700 flex gap-2">
+            <h3 className="text-xl font-semibold text-gray-600 flex gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -78,7 +78,7 @@ const GoogleMap = () => {
             <p className="text-gray-600">Phone Number</p>
           </div>
           <div>
-            <h3 className="text-xl font-semibold text-gray-700 flex gap-2">
+            <h3 className="text-xl font-semibold text-gray-600 flex gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

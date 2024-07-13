@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaBars, FaShoppingCart } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
+import logo from "../../../assets/images/logo/logo.jpg";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
@@ -19,9 +20,14 @@ const Navbar: React.FC = () => {
   return (
     <nav className="fixed top-0 left-0 w-full bg-orange-600 text-white p-2 shadow-md z-50">
       <div className="container mx-auto flex items-center justify-between">
-        {/* Logo and Home link */}
         <Link to="/" className="flex items-center space-x-2">
-          <span className="text-xl font-bold text-white">Campers Shop</span>
+          <img
+            src={logo}
+            alt="Campers Shop Logo"
+            className="w-10 h-10 object-contain rounded-full" // No hover effect needed here
+          />
+          <span className="text-xl font-bold text-white">Campers Shop</span>{" "}
+          {/* No hover effect needed here */}
         </Link>
 
         {/* Desktop menu links */}
@@ -30,8 +36,8 @@ const Navbar: React.FC = () => {
             to="/"
             className={`px-3 py-2 rounded-xl text-sm font-medium ${
               isActive("/")
-                ? "bg-white"
-                : "text-white hover:bg-orange hover:text-orange-500"
+                ? "bg-white text-orange-600"
+                : "text-white hover:bg-orange-500"
             }`}
           >
             Home
@@ -40,8 +46,8 @@ const Navbar: React.FC = () => {
             to="/products"
             className={`px-3 py-2 rounded-xl text-sm font-medium ${
               isActive("/products")
-                ? "bg-white"
-                : "text-white hover:bg-orange hover:text-orange-500"
+                ? "bg-white text-orange-600"
+                : "text-white hover:bg-orange-500"
             }`}
           >
             Products
@@ -50,19 +56,19 @@ const Navbar: React.FC = () => {
             to="/product-management"
             className={`px-3 py-2 rounded-xl text-sm font-medium ${
               isActive("/product-management")
-                ? "bg-white"
-                : "text-white hover:bg-orange hover:text-orange-500"
+                ? "bg-white text-orange-600"
+                : "text-white hover:bg-orange-500"
             }`}
-            onClick={() => setIsMenuOpen(false)} // Close menu on link click
+            onClick={closeMenu}
           >
-            ProductsManagement
+            Product Management
           </Link>
           <Link
             to="/about-us"
             className={`px-3 py-2 rounded-xl text-sm font-medium ${
               isActive("/about-us")
-                ? "bg-white"
-                : "text-white hover:bg-orange hover:text-orange-500"
+                ? "bg-white text-orange-600"
+                : "text-white hover:bg-orange-500"
             }`}
           >
             About Us
@@ -71,8 +77,8 @@ const Navbar: React.FC = () => {
             to="/cart"
             className={`px-3 py-2 rounded-xl text-sm font-medium ${
               isActive("/cart")
-                ? "bg-white"
-                : "text-white hover:bg-orange hover:text-orange-500"
+                ? "bg-white text-orange-600"
+                : "text-white hover:bg-orange-500"
             }`}
           >
             Cart <FaShoppingCart className="inline ml-1" />
@@ -82,81 +88,84 @@ const Navbar: React.FC = () => {
         {/* Mobile menu button */}
         <div className="md:hidden flex items-center">
           <button
-            className="bg-white text-orange-500 p-1 rounded-xl"
-            onClick={toggleMenu} // Toggle menu visibility
+            className="bg-white text-orange-500 p-2 rounded-full"
+            onClick={toggleMenu}
           >
-            Menu
+            <FaBars className="text-2xl" />
           </button>
         </div>
       </div>
 
       {/* Mobile menu links */}
       <div
-        className={`md:hidden ${
-          isMenuOpen ? "block" : "hidden"
-        } fixed inset-0 bg-gray-900 text-orange-500 bg-opacity-50 flex flex-col space-y-2 mt-2 p-4`}
+        className={`fixed top-0 left-0 h-full bg-orange-500 text-white bg-opacity-100 p-4 transition-transform ${
+          isMenuOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+        style={{ width: "60%" }}
       >
         <button
-          className="self-end text-white text-2xl"
-          onClick={closeMenu} // Close menu on click
+          className="absolute top-4 right-4 text-white text-2xl"
+          onClick={closeMenu}
         >
           &times;
         </button>
-        <Link
-          to="/"
-          className={`px-3 py-2 rounded-xl text-sm font-medium ${
-            isActive("/")
-              ? "bg-white"
-              : "text-white hover:bg-orange hover:text-orange-500"
-          }`}
-          onClick={closeMenu} // Close menu on link click
-        >
-          Home
-        </Link>
-        <Link
-          to="/products"
-          className={`px-3 py-2 rounded-xl text-sm font-medium ${
-            isActive("/products")
-              ? "bg-white"
-              : "text-white hover:bg-orange hover:text-orange-500"
-          }`}
-          onClick={closeMenu} // Close menu on link click
-        >
-          Products
-        </Link>
-        <Link
-          to="/product-management"
-          className={`px-3 py-2 rounded-xl text-sm font-medium ${
-            isActive("/product-management")
-              ? "bg-white"
-              : "text-white hover:bg-orange hover:text-orange-500"
-          }`}
-          onClick={closeMenu} // Close menu on link click
-        >
-          ProductsManagement
-        </Link>
-        <Link
-          to="/about-us"
-          className={`px-3 py-2 rounded-xl text-sm font-medium ${
-            isActive("/about-us")
-              ? "bg-white"
-              : "text-white hover:bg-orange hover:text-orange-500"
-          }`}
-          onClick={closeMenu} // Close menu on link click
-        >
-          About Us
-        </Link>
-        <Link
-          to="/cart"
-          className={`px-3 py-2 rounded-xl text-sm font-medium ${
-            isActive("/cart")
-              ? "bg-white"
-              : "text-white hover:bg-orange hover:text-orange-500"
-          }`}
-          onClick={closeMenu} // Close menu on link click
-        >
-          Cart <FaShoppingCart className="inline ml-1" />
-        </Link>
+        <div className="flex flex-col space-y-4 mt-12">
+          <Link
+            to="/"
+            className={`px-3 py-2 rounded-xl text-sm font-medium ${
+              isActive("/")
+                ? "bg-white text-orange-600"
+                : "text-white hover:bg-orange-500"
+            }`}
+            onClick={closeMenu}
+          >
+            Home
+          </Link>
+          <Link
+            to="/products"
+            className={`px-3 py-2 rounded-xl text-sm font-medium ${
+              isActive("/products")
+                ? "bg-white text-orange-600"
+                : "text-white hover:bg-orange-500"
+            }`}
+            onClick={closeMenu}
+          >
+            Products
+          </Link>
+          <Link
+            to="/product-management"
+            className={`px-3 py-2 rounded-xl text-sm font-medium ${
+              isActive("/product-management")
+                ? "bg-white text-orange-600"
+                : "text-white hover:bg-orange-500"
+            }`}
+            onClick={closeMenu}
+          >
+            Product Management
+          </Link>
+          <Link
+            to="/about-us"
+            className={`px-3 py-2 rounded-xl text-sm font-medium ${
+              isActive("/about-us")
+                ? "bg-white text-orange-600"
+                : "text-white hover:bg-orange-500"
+            }`}
+            onClick={closeMenu}
+          >
+            About Us
+          </Link>
+          <Link
+            to="/cart"
+            className={`px-3 py-2 rounded-xl text-sm font-medium ${
+              isActive("/cart")
+                ? "bg-white text-orange-600"
+                : "text-white hover:bg-orange-500"
+            }`}
+            onClick={closeMenu}
+          >
+            Cart <FaShoppingCart className="inline ml-1" />
+          </Link>
+        </div>
       </div>
     </nav>
   );

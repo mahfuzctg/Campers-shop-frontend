@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import footerImage from "../../../assets/images/Banner/hero-png.png";
 
-import { Button } from "@/root/ui/button";
+import Button from "@/root/ui/button";
 import { Input } from "@/root/ui/input";
 import mastercard from "../../../assets/SVG/mastercard.svg";
 import paypal from "../../../assets/SVG/paypal.svg";
@@ -29,12 +29,12 @@ const Footer = () => {
                 </h3>
                 <div className="flex w-full max-w-xl items-center space-x-2">
                   <Input
-                    className="focus-visible:ring-offset-0  md:w-96"
+                    className="focus-visible:ring-offset-0 text-orange-500 rounded-2xl bg-white md:w-96"
                     type="email"
                     placeholder="Enter your email address..."
                   />
                   <Button
-                    className="bg-orange-500 text-white hover:bg-white hover:text-orange-500  w-36"
+                    className="bg-orange-500 rounded-2xl text-white hover:bg-white hover:text-orange-500  w-36"
                     type="submit"
                   >
                     SUBSCRIBE

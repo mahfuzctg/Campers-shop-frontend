@@ -8,8 +8,13 @@ export interface Product {
   description: string;
   price: number;
   category: string;
-  images: string[]; // Using images array from backend
+  image: string;
   stockQuantity: number;
   ratings: number;
   tags: string[];
+
+  quantity: number;
+  rating: number;
+  stock: boolean;
+  __v: number;
 }
