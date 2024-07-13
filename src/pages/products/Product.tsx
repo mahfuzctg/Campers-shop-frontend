@@ -58,7 +58,7 @@ const Products = () => {
 
   return (
     <div>
-      <div className="mb-4">
+      <div className=" max-w-screen-xl mx-auto py-4 flex flex-col md:flex-row gap-4 justify-between items-center  ">
         <input
           type="text"
           placeholder="Search products..."

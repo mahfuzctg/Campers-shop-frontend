@@ -9,17 +9,6 @@ const scrollingTexts = [
   "Exclusive Camping Gear",
 ];
 
-const bounceAnimation = {
-  y: [0, -30, 0],
-  opacity: [1, 0.5, 1],
-  transition: {
-    duration: 0.6,
-    ease: "easeInOut",
-    repeat: Infinity,
-    repeatDelay: 2,
-  },
-};
-
 const HeroSection = () => {
   const textRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();

@@ -23,7 +23,15 @@ const CreateProduct = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: {
+    image: (string | Blob)[];
+    name: any;
+    price: any;
+    description: any;
+    quantity: any;
+    category: any;
+    rating: any;
+  }) => {
     const formData = new FormData();
     formData.append("image", data.image[0]);
     setLoading(true);
@@ -178,7 +186,7 @@ const CreateProduct = () => {
           </div>
 
           <Button
-            className="w-full bg-gray-600 hover:bg-gray-500"
+            className="w-full bg-green-500 hover:bg-green-600"
             type="submit"
           >
             {loading || isLoading ? "Loading..." : "Create Product"}
